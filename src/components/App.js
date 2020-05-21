@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+
 import Grid from '@material-ui/core/Grid';
-import { btnOvrride } from './layout.css';
-import MainHeader from './HeaderComponent';
+
 import HeaderComponentContainer from '../containers/HeaderComponentContainer';
-import DatatableComponent from './DataTableComponent';
-import DataTableDuplicate from './DatatableDuplicate';
+
 import DataTableComponentContainer from '../containers/DataTableComponentContainer';
 const useStyles = makeStyles((theme) => ({
     root: {

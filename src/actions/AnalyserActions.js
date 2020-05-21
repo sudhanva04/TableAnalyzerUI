@@ -41,6 +41,8 @@ export const disableAnalyseButton = res => ({
     payload: res
 })
 
+const baseUrl = 'https://frozen-oasis-68484.herokuapp.com/analyse/';
+
 export const getSearchResults = level => {
     return (dispatch, getState) => {
         const state = getState();
@@ -55,7 +57,8 @@ export const getSearchResults = level => {
         }
         //http://localhost:8083/analyser/analyse/tableResults?searchKey=DATE&funcLevel=2&jobId=hhrtsjhjd567
         let url = '';
-        url = 'http://localhost:8083/analyser/analyse/tableResults?searchKey=' + searchKey + '&funcLevel=' + level;
+        //url = 'http://localhost:8083/analyser/analyse/tableResults?searchKey=' + searchKey + '&funcLevel=' + level;
+        url = baseUrl+'tableResults?searchKey=' + searchKey + '&funcLevel=' + level;
         axios
             // .get('http://localhost:8083/analyser/analyse', {
             .get(url, {
@@ -89,7 +92,8 @@ export const startAnalyse = () => {
                 Accept: 'application/json',
             }
         }
-        let url = 'http://localhost:8083/analyser/analyse/startScript?searchKey=' + searchKey + '&funcLevel=' + funcLevel;
+        //let url = 'http://localhost:8083/analyser/analyse/startScript?searchKey=' + searchKey + '&funcLevel=' + funcLevel;
+        let url = baseUrl+'startScript?searchKey=' + searchKey + '&funcLevel=' + funcLevel;
         dispatch(setLoaderVisible(true));
         dispatch(disableAnalyseButton(true));
         axios
@@ -111,7 +115,8 @@ export const startAnalyse = () => {
                 searchKey = res.data.searchString;
                 if (status != 'COMPLETED' && status != 'FAILED') {
                     var interval = setInterval(() => {
-                        url = 'http://localhost:8083/analyser/analyse/tableResultsWithJobId?searchKey=' + searchKey + '&funcLevel=' + funcLevel + '&jobId=' + jobId
+                        //url = 'http://localhost:8083/analyser/analyse/tableResultsWithJobId?searchKey=' + searchKey + '&funcLevel=' + funcLevel + '&jobId=' + jobId
+                        url = baseUrl+'tableResultsWithJobId?searchKey=' + searchKey + '&funcLevel=' + funcLevel + '&jobId=' + jobId;
                         axios
                             // .get('http://localhost:8083/analyser/analyse', {
                             .get(url, {
