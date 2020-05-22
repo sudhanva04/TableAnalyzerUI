@@ -192,7 +192,7 @@ const EnhancedTableToolbar = props => {
                     </Typography>
                 )}
 
-            {numSelected > 0 ? (
+            {/* {numSelected > 0 ? (
                 <Tooltip title="Delete">
                     <IconButton aria-label="delete">
                         <DeleteIcon />
@@ -204,7 +204,7 @@ const EnhancedTableToolbar = props => {
                             <FilterListIcon />
                         </IconButton>
                     </Tooltip>
-                )}
+                )} */}
         </Toolbar>
     );
 };

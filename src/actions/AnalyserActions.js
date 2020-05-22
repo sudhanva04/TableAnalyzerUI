@@ -50,6 +50,9 @@ export const getSearchResults = level => {
         const searchKey = state.searchInput;
         const jobId = state.jobId;
         const funcLevel = state.funcLevel;
+        if (typeof level != 'number') {
+            return;
+        }
         //const jobType = state.jobType;
         let config = {
             headers: {
@@ -59,7 +62,7 @@ export const getSearchResults = level => {
         //http://localhost:8083/analyser/analyse/tableResults?searchKey=DATE&funcLevel=2&jobId=hhrtsjhjd567
         let url = '';
         //url = 'http://localhost:8083/analyser/analyse/tableResults?searchKey=' + searchKey + '&funcLevel=' + level;
-        url = baseUrl+'tableResults?searchKey=' + searchKey + '&funcLevel=' + level;
+        url = baseUrl + 'tableResults?searchKey=' + searchKey + '&funcLevel=' + level;
         axios
             // .get('http://localhost:8083/analyser/analyse', {
             .get(url, {
@@ -95,7 +98,7 @@ export const startAnalyse = () => {
             }
         }
         //let url = 'http://localhost:8083/analyser/analyse/startScript?searchKey=' + searchKey + '&funcLevel=' + funcLevel;
-        let url = baseUrl+'startScript?searchKey=' + searchKey + '&funcLevel=' + funcLevel;
+        let url = baseUrl + 'startScript?searchKey=' + searchKey + '&funcLevel=' + funcLevel;
         dispatch(setLoaderVisible(true));
         dispatch(disableAnalyseButton(true));
         axios
@@ -118,7 +121,7 @@ export const startAnalyse = () => {
                 if (status != 'COMPLETED' && status != 'FAILED') {
                     var interval = setInterval(() => {
                         //url = 'http://localhost:8083/analyser/analyse/tableResultsWithJobId?searchKey=' + searchKey + '&funcLevel=' + funcLevel + '&jobId=' + jobId
-                        url = baseUrl+'tableResultsWithJobId?searchKey=' + searchKey + '&funcLevel=' + funcLevel + '&jobId=' + jobId;
+                        url = baseUrl + 'tableResultsWithJobId?searchKey=' + searchKey + '&funcLevel=' + funcLevel + '&jobId=' + jobId;
                         axios
                             // .get('http://localhost:8083/analyser/analyse', {
                             .get(url, {
@@ -130,6 +133,11 @@ export const startAnalyse = () => {
                                 //credentials: 'same-origin'
                             })
                             .then(resp => {
+                                if (searchKey != getState().searchInput) {
+                                    dispatch(setLoaderVisible(false));
+                                    clearInterval(interval);
+                                    return;
+                                }
                                 //console.log(JSON.stringify(res.data));
                                 let status = resp.data.status.split(":");
                                 if (status[0] == 'Complete') {
