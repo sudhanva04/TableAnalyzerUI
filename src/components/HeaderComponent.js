@@ -11,6 +11,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import PropTypes from 'prop-types';
+import Paper from '@material-ui/core/Paper';
 
 
 
@@ -37,7 +38,16 @@ const useStyles = makeStyles((theme) => ({
     },
     containerStyle: {
         padding: '30px'
-    }
+    },
+    funcLvlStyle: {
+        paddingBottom: '0px'
+    },
+    paper: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        //color: theme.palette.text.secondary,
+        backgroundColor: 'whitesmoke'
+      }
 }));
 
 const HeaderView = (props) => {
@@ -79,11 +89,11 @@ const HeaderView = (props) => {
     const classes = useStyles();
     return <div className={classes.margin}>
         <Grid container spacing={1} alignItems="flex-end" className={classes.containerStyle}>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
                 <div display="inline" p={1} m={1} bgcolor="background.paper" className={classes.boxStyle}>
                     Big Query Analysis Tool
                 </div>
-            </Grid>
+            </Grid> */}
             <Grid item xs={2}>
                 <TextField id="input-with-icon-grid" label="Enter table name" className={classes.txtFieldStyle} value={props.getSearchInput} onChange={setInput} />
             </Grid>
@@ -96,10 +106,10 @@ const HeaderView = (props) => {
             <Grid item xs={2}> {props.disableAnalyseBtn == false ?
                 <Button variant="outlined"
                     className={classes.btnStyle} onClick={handleClickOpen}>
-                    Analyze Now
+                    Analyze now
                 </Button> :
                 <Button variant="contained" disabled>
-                    Analyze Now disabled
+                    Analyze now
                 </Button>}
                 <Dialog
                     open={open}
@@ -144,6 +154,12 @@ const HeaderView = (props) => {
                 {props.getLoaderVisible && <CircularProgress />}
             </Grid>
         </Grid>
+        {/* <Grid container justify="flex-end" alignItems="center" direction="row" className={classes.funcLvlStyle}>
+        <Grid item >
+          <Paper className={classes.paper}>{'Function Level'+ '2'}</Paper>
+        </Grid>
+        </Grid> */}
+
     </div>
 }
 

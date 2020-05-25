@@ -101,7 +101,7 @@ function EnhancedTableHead(props) {
     };
 
     return (
-        <TableHead>
+        <TableHead className={classes.theadColor}>
             <TableRow>
                 {/* <TableCell padding="checkbox">
                     <Checkbox
@@ -188,7 +188,7 @@ const EnhancedTableToolbar = props => {
                 </Typography>
             ) : (
                     <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-                        Results
+                        {'Results for Function Level: '+props.funcLevel}
                     </Typography>
                 )}
 
@@ -238,6 +238,9 @@ const useStyles = makeStyles((theme) => ({
     messageStyle: {
         textAlign: 'center',
         color: 'maroon'
+    },
+    theadColor: {
+        backgroundColor: 'whitesmoke'
     }
 }));
 
@@ -310,7 +313,7 @@ const DatatableComponent = (props) => {
         props.isTableVisible && props.tableData.status != 'Error' ?
             <div className={classes.root}>
                 {rows.length > 0 ? <Paper className={classes.paper}>
-                    <EnhancedTableToolbar numSelected={selected.length} />
+                    <EnhancedTableToolbar numSelected={selected.length} funcLevel={props.funcLevel}/>
                     <TableContainer>
                         <Table
                             className={classes.table}
@@ -408,7 +411,8 @@ const DatatableComponent = (props) => {
 
 DatatableComponent.propTypes = {
     tableData: PropTypes.object,
-    isTableVisible: PropTypes.bool
+    isTableVisible: PropTypes.bool,
+    funcLevel: PropTypes.number
 }
 
 export default DatatableComponent;

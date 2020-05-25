@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import HeaderComponentContainer from '../containers/HeaderComponentContainer';
 
 import DataTableComponentContainer from '../containers/DataTableComponentContainer';
+import LeftNavComponent from './LeftNavComponent';
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -21,43 +22,20 @@ const useStyles = makeStyles((theme) => ({
 const AppView = (props) => {
     const classes = useStyles();
     return (
-        <div className={classes.root}>
-            <Grid container spacing={3} alignItems="center">
-                <Grid item xs={12}>
-                    {/* <Paper className={classes.paper}>xs=12</Paper> */}
-                    {/* <MainHeader isTableVisible = {props.isTableVisible} setTableVisible = {props.setTableVisible}/> */}
-                    <HeaderComponentContainer />
-                </Grid>
-                <Grid item xs={12}>
-                    {/* <Paper className={classes.paper}>xs=6</Paper> */}
-                    {/*props.isTableVisible && <DatatableComponent /> */}
-                    <DataTableComponentContainer />
-                </Grid>
-                {/* <Grid item xs={6}>
-                    <Paper className={classes.paper}>xs=6</Paper>
-                </Grid>
-                <Grid item xs={6}>
-                    <Paper className={classes.paper}>xs=6</Paper>
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>xs=3</Paper>
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>xs=3</Paper>
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>xs=3</Paper>
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>xs=3</Paper>
-                </Grid> */}
-            </Grid>
-        </div>
+        // <div className={classes.root}>
+        //     <Grid container spacing={3} alignItems="center">
+        //         <Grid item xs={12}>
+        //             <HeaderComponentContainer />
+        //         </Grid>
+        //         <Grid item xs={12}>
+        //             <DataTableComponentContainer />
+        //         </Grid>
+        //     </Grid>
+        // </div>
+        <div><LeftNavComponent /></div>
     );
 };
 
-//export default App;
-//<button className={btnOvrride}>Hello World</button>
 class App extends Component {
     constructor(props) {
         super(props);

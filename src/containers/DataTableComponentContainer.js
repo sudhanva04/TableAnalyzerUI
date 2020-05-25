@@ -6,6 +6,7 @@ const mapStateToProps = state => {
     return {
         tableData: dataTableSelector(state),
         isTableVisible: isTableVisible(state),
+        funcLevel: state.funcLevel
     }
 }
 

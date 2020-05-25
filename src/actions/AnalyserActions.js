@@ -41,8 +41,8 @@ export const disableAnalyseButton = res => ({
     payload: res
 })
 
-const baseUrl = 'https://frozen-oasis-68484.herokuapp.com/analyse/';
-//const baseUrl = 'http://localhost:8083/analyse/';
+//const baseUrl = 'https://frozen-oasis-68484.herokuapp.com/analyse/';
+const baseUrl = 'http://localhost:8083/analyse/';
 
 export const getSearchResults = level => {
     return (dispatch, getState) => {
@@ -78,6 +78,7 @@ export const getSearchResults = level => {
                 dispatch(setSearchResult(res.data));
                 dispatch(setTableVisibleAction(true));
                 dispatch(disableAnalyseButton(false));
+                dispatch(setfuncLevel(level))
             })
             .catch(err => {
                 console.log("Error in search result call api call!!!");
@@ -143,6 +144,7 @@ export const startAnalyse = () => {
                                 if (status[0] == 'Complete') {
                                     dispatch(setSearchResult(resp.data));
                                     dispatch(setTableVisibleAction(true));
+                                    dispatch(setfuncLevel(level))
                                     dispatch(setLoaderVisible(false));
                                     //dispatch(disableAnalyseButton(false));
                                     clearInterval(interval);
@@ -158,6 +160,7 @@ export const startAnalyse = () => {
                             .catch(err => {
                                 console.log("Error in search result call api call!!!");
                                 dispatch(setTableVisibleAction(false));
+                                dispatch(setLoaderVisible(false));
                                 // dispatch(addTodoFailure(err.message));
                             });
                     }, 10 * 1000);
